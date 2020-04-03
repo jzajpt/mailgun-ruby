@@ -79,7 +79,7 @@ module Mailgun
         # Remove nil values from the data hash
         # Submitting nils to the API will likely cause an error.
         #  See also: https://github.com/mailgun/mailgun-ruby/issues/32
-        data = data.select { |k, v| v != nil }
+        data = data.reject { |k, v| v.blank? }
 
         if data.key?(:message)
           if data[:message].is_a?(String)
